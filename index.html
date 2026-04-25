@@ -165,14 +165,16 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
   .case-grid{grid-template-columns:1fr !important}
 
   /* Hero — override inline grid */
-  div[style*="grid-template-columns:1fr 340px"]{grid-template-columns:1fr !important}
-  div[style*="grid-template-columns:1fr 340px"] > div:last-child{display:none}
+  div[style*="grid-template-columns:1fr 340px"]{grid-template-columns:1fr !important;gap:24px !important;padding:36px 16px 32px !important}
+  div[style*="grid-template-columns:1fr 340px"] > div:last-child{display:none !important}
 
   /* Hero buttons — stack */
-  div[style*="display:flex;gap:12px"]{flex-direction:column;align-items:flex-start}
+  div[style*="display:flex;gap:12px"]{flex-direction:column !important;align-items:stretch !important}
+  div[style*="display:flex;gap:12px"] button,
+  div[style*="display:flex;gap:12px"] a{width:100% !important;text-align:center !important}
 
   /* Hero heading */
-  h1[style*="font-size:46px"]{font-size:28px !important}
+  h1[style*="font-size:46px"]{font-size:26px !important;margin-bottom:14px !important}
 
   /* Calculator — override inline grid */
   div[style*="grid-template-columns:380px 1fr"]{grid-template-columns:1fr !important}
