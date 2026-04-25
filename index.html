@@ -123,6 +123,16 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
 .inl{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;display:block}
 .inh{font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);margin-bottom:8px;line-height:1.3}.int{font-size:13px;color:var(--text-mid);line-height:1.6}
 .disc{border-top:1px solid var(--border);margin-top:40px;padding-top:20px;font-size:12px;color:var(--text-light);line-height:1.7}
+.rwfooter{background:#1A1A2A;color:rgba(255,255,255,0.75);padding:40px 32px 32px;font-size:12.5px;line-height:1.85}
+.rwfooter .rw-inner{max-width:1200px;margin:0 auto}
+.rw-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:32px}
+.rw-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(184,130,10,0.9);margin-bottom:12px}
+.rwfooter p{margin-bottom:10px}
+.rwfooter strong{color:white}
+.rw-border{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.fp-strip{background:#FFF3CD;border-top:1px solid rgba(146,101,10,0.3);border-bottom:1px solid rgba(146,101,10,0.3);padding:11px 32px;font-size:12.5px;color:#7a4f00;display:flex;align-items:flex-start;gap:10px}
+@media(max-width:768px){.rw-grid,.rw-border{grid-template-columns:1fr !important}.rwfooter{padding:28px 16px}.fp-strip{padding:10px 16px;font-size:12px}}
+
 .article-body p{font-size:15px;color:var(--text-mid);line-height:1.85;margin-bottom:18px}
 .article-body h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--navy);margin:28px 0 12px}
 .article-body ul{margin:0 0 18px 20px;display:flex;flex-direction:column;gap:8px}
@@ -282,6 +292,10 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
 
 <div style="background:#FFF8E6;border-bottom:1px solid rgba(184,130,10,0.35);padding:9px 32px;font-size:13px;color:#92650A"><strong>Finance Act 2026 &middot; Royal Assent 20 March 2026.</strong>&nbsp; April 2027 is now less than 12 months away. For clients over 75, income tax on death benefits can be eliminated from the day of transfer. The 2-year BPR clock starts immediately.</div>
 
+<div class="fp-strip">
+  <span style="flex-shrink:0;font-size:15px">&#9888;</span>
+  <span><strong>For professional adviser use only &mdash; not for client distribution.</strong> The information on this site does not constitute financial, tax or legal advice. Tax treatment depends on individual circumstances and is subject to change. BPR is not guaranteed &mdash; past claim success does not guarantee future outcomes. The value of pension investments can go down as well as up. Independent advice required before any recommendation is made to a client. &nbsp;<a href="#risk-warning" style="color:#7a4f00;font-weight:600;text-decoration:underline">Full risk warning &darr;</a></span>
+</div>
 <main class="main">
 
 <!-- OVERVIEW -->
@@ -1186,5 +1200,35 @@ calc();
 function toggleCase(card){const b=card.querySelector('.cb');const o=b.classList.contains('open');b.classList.toggle('open',!o);card.classList.toggle('open',!o)}
 function toggleFaq(el){el.parentElement.classList.toggle('open')}
 </script>
+
+<div id="risk-warning" class="rwfooter">
+  <div class="rw-inner">
+    <div class="rw-grid">
+      <div>
+        <div class="rw-label">Important Risk Information</div>
+        <p>The information contained within this site is our opinion and for guidance only and <strong>does not constitute financial, tax or legal advice</strong>, which should be sought before taking any action. The Financial Conduct Authority <strong>does not regulate estate planning, tax planning, or will writing</strong>.</p>
+        <p>A pension is a long-term investment not normally accessible until age 55 (57 from April 2028 unless the plan has a protected pension age). <strong>The value of your investments, and any income from them, can go down as well as up</strong> which would have an impact on the level of pension benefits available. Your pension income could also be affected by the interest rates at the time you take your benefits.</p>
+        <p>The Flexible Pension Annuity is a unit-linked annuity. The value of the Protected Cell depends on the performance of the underlying investments and <strong>there is no guarantee of capital</strong>. Past investment performance is not a guide to future performance.</p>
+      </div>
+      <div>
+        <div class="rw-label">Tax &amp; BPR Warnings</div>
+        <p><strong>Business Property Relief is not guaranteed.</strong> BPR qualification is subject to meeting all qualifying conditions at the date of death, including the 2-year holding period. Whilst 100% of claims submitted to HMRC past the 2-year mark have been accepted to date, past claim success is not a guarantee of future outcomes. HMRC may change its interpretation or future legislation may alter BPR qualifying conditions.</p>
+        <p><strong>Tax treatment depends on individual circumstances</strong> and is subject to change. The tax analysis on this site reflects the law as at April 2026. Whilst Finance Act 2026 has received Royal Assent, future legislation could amend these provisions. Independent tax advice should be obtained before any recommendation is made to a client.</p>
+        <p>Illustrative figures shown throughout this site assume no investment growth, specific tax rates and that BPR conditions are met. <strong>Actual outcomes will differ</strong> depending on investment performance, longevity, tax rates applicable, and legislative changes.</p>
+      </div>
+    </div>
+    <div class="rw-border">
+      <div>
+        <div class="rw-label">Regulatory Information</div>
+        <p><strong>Aetas Wealth</strong> is a trading style of Insight Financial Associates Ltd, which is authorised and regulated by the Financial Conduct Authority (FCA) under registration number 458421. Insight Financial Associates Ltd is a company incorporated in England and Wales with company number 05054886. Registered office: Insight House, 7a Alkmaar Way, Norwich International Business Park, Norwich, NR6 6BF.</p>
+      </div>
+      <div>
+        <div class="rw-label">Provider &amp; FSCS Information</div>
+        <p>The specialist annuity provider is authorised by the FCA and dual-regulated by the Gibraltar Financial Services Commission. The FPA is a protected contract of insurance under the Financial Services Compensation Scheme (FSCS) &mdash; providing 100% policyholder protection with no upper limit.</p>
+        <p style="color:rgba(255,255,255,0.5)"><strong>For professional adviser use only. Not for client distribution.</strong> &copy; Aetas Wealth / Insight Financial Associates Ltd 2026.</p>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
