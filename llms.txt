@@ -1,0 +1,66 @@
+# Aetas Wealth — Flexible Pension Annuity · Adviser Dashboard
+
+> A professional adviser resource explaining the pension inheritance tax problem created by Finance Act 2026 and the Flexible Pension Annuity (FPA) solution that eliminates both IHT and income tax on DC pension death benefits.
+
+## What This Site Is
+
+This is a professional financial adviser dashboard produced by Aetas Wealth (a trading style of Insight Financial Associates Ltd, FCA No. 458421). It is for professional adviser use only and is not intended for direct client distribution.
+
+The site explains:
+- The "Double Whammy" pension IHT problem created by Finance Act 2026 (Royal Assent 20 March 2026)
+- How from April 2027, unused DC pension funds enter the IHT estate, creating a combined IHT + income tax charge of up to 67% for clients over 75
+- The Flexible Pension Annuity (FPA) — a unit-linked pension annuity that eliminates income tax on death benefits from day one, and IHT after two years via Business Property Relief (BPR)
+
+## The Problem
+
+Finance Act 2026 brings DC pension funds into the IHT estate from April 2027. For clients over 75 with non-spouse beneficiaries:
+- IHT at 40% applies to the pension fund on death
+- Income tax at up to 45% applies to withdrawals by beneficiaries
+- Combined effective rate: up to 67% (some scenarios 80%+)
+- Example: £500,000 pension → only £165,000 reaches children (33p in every pound)
+
+Executors also face personal liability for pension IHT within 6 months of death under the new rules.
+
+## The Solution — Flexible Pension Annuity (FPA)
+
+The FPA is a unit-linked lifetime pension annuity that works like drawdown but with a Preference Share mechanism that eliminates both taxes on death.
+
+**Stage 1 — Immediate (income tax):**
+Client transfers their crystallised DC pension into the FPA and purchases a Preference Share in a Gibraltar Protected Cell Company (PCC). On death, the residual Cell value passes via the Preference Share — free of income tax and CGT from day one.
+
+**Stage 2 — After 2 years (IHT via BPR):**
+The Preference Share qualifies for 100% Business Property Relief under s105(1)(bb) IHTA 1984 — it is an unlisted share in a profit-making life assurance company. After a 2-year holding period, IHT is eliminated on the first £2.5m.
+
+**Result:** Same £500,000 pension → £472,700 reaches children after all charges.
+
+## Key Facts
+
+- Provider established 2001, FCA-authorised, dual-regulated by Gibraltar FSC
+- FSCS protection: 100%, no cap (protected contracts of insurance)
+- Available on ORIGO platform; in-specie transfers permitted
+- Minimum fund: £100,000; primary target: £500,000+
+- Charges: 2% establishment (capped £10,000), 1% AMC (capped £1,600 pa)
+- BPR track record: 250+ HMRC claims past 2-year mark — not one refused
+- BPR confirmed by Threesixty Services LLP (Luke Tribe, Research Manager) per s105(1)(bb) IHTA 1984
+- Independent tax advice: Fusion Partners (~£1,500 + VAT)
+
+## Site Structure
+
+- Overview: Summary of problem and solution with key statistics
+- The Problem: Detailed explanation of Finance Act 2026 impact, tax tables, £500k comparison, priority client segments, executor liability
+- The Solution: FPA mechanism, product characteristics, suitability grid, additional planning strategies
+- How It Works: Protected Cell Company structure, BPR legal basis, provider credentials
+- Case Studies: Five illustrative client scenarios (Margaret 77, David & Susan 68/65, Richard 61, Christine 73, Alan 73)
+- Costs & Benefits: Three scenarios showing net benefit after all charges; comparison with life assurance
+- FAQs: Eight adviser questions on law, BPR basis, Gibraltar, charges, executor liability
+
+## Contact
+
+Peter Rose APFS, Chartered Financial Planner
+Aetas Wealth / Insight Financial Associates Ltd
+peter.rose@aetas-wealth.com
+FCA No. 458421
+
+## Disclaimer
+
+For professional adviser use only. Not for client distribution. All figures illustrative as at April 2026. Individual financial advice required before any recommendation. BPR outcomes not guaranteed — past claim success does not guarantee future results.
