@@ -123,6 +123,9 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
 .inl{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;display:block}
 .inh{font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);margin-bottom:8px;line-height:1.3}.int{font-size:13px;color:var(--text-mid);line-height:1.6}
 .disc{border-top:1px solid var(--border);margin-top:40px;padding-top:20px;font-size:12px;color:var(--text-light);line-height:1.7}
+.calc-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:11px 20px;border-bottom:1px solid var(--border-light);font-size:13px;color:var(--text-mid)}
+.calc-row span:not(:first-child){text-align:right}
+.calc-row:hover{background:var(--cream)}
 </style>
 </head>
 <body>
@@ -140,6 +143,7 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
     <button class="ntab" onclick="showTab('how',this)"><span class="tdot"></span>How It Works</button>
     <button class="ntab" onclick="showTab('cases',this)"><span class="tdot"></span>Case Studies</button>
     <button class="ntab" onclick="showTab('costs',this)"><span class="tdot"></span>Costs &amp; Benefits</button>
+    <button class="ntab" onclick="showTab('calc',this)"><span class="tdot"></span>Tax Calculator</button>
     <button class="ntab" onclick="showTab('faqs',this)"><span class="tdot"></span>FAQs</button>
   </nav>
   <span class="htagline">Pension Legacy Planning &middot; Adviser Guide &middot; April 2026</span>
@@ -687,6 +691,171 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
   </div>
 </section>
 
+<!-- CALCULATOR -->
+<section id="tab-calc" class="section">
+  <div class="tag">Live Illustration &middot; Adjust inputs to see your client's numbers</div>
+  <h2 class="serif" style="font-size:30px">Pension IHT Tax Calculator</h2>
+  <p class="intro">Enter your client's details to see the precise impact of Finance Act 2026 on their pension — and the saving available through the Flexible Pension Annuity. All figures are illustrative.</p>
+
+  <div style="display:grid;grid-template-columns:380px 1fr;gap:28px;align-items:start">
+
+    <!-- INPUTS -->
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:28px;position:sticky;top:108px">
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px">Client Details</div>
+
+      <!-- Fund size -->
+      <div style="margin-bottom:22px">
+        <label style="font-size:13px;font-weight:500;color:var(--navy);display:block;margin-bottom:8px">Pension fund value</label>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+          <span style="font-size:13px;color:var(--text-mid);">&pound;</span>
+          <input type="number" id="fundInput" value="500000" min="100000" max="5000000" step="10000"
+            oninput="syncSlider('fund');calc()"
+            style="flex:1;border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;font-size:15px;font-weight:500;color:var(--navy);font-family:'DM Sans',sans-serif;outline:none;width:100%">
+        </div>
+        <input type="range" id="fundSlider" min="100000" max="3000000" step="10000" value="500000"
+          oninput="syncInput('fund');calc()"
+          style="width:100%;accent-color:var(--navy)">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-light);margin-top:3px"><span>&pound;100k</span><span>&pound;3m</span></div>
+      </div>
+
+      <!-- Age -->
+      <div style="margin-bottom:22px">
+        <label style="font-size:13px;font-weight:500;color:var(--navy);display:block;margin-bottom:10px">Client age at death</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <label style="cursor:pointer">
+            <input type="radio" name="age" id="ageUnder" value="under75" onchange="calc()" style="display:none">
+            <div class="radio-pill" id="pill-ageUnder" onclick="selectRadio('ageUnder')" style="border:1.5px solid var(--border);border-radius:6px;padding:10px 12px;text-align:center;font-size:13px;color:var(--text-mid);cursor:pointer;transition:all .15s">Under 75</div>
+          </label>
+          <label style="cursor:pointer">
+            <input type="radio" name="age" id="ageOver" value="over75" onchange="calc()" checked style="display:none">
+            <div class="radio-pill" id="pill-ageOver" onclick="selectRadio('ageOver')" style="border:1.5px solid var(--navy);border-radius:6px;padding:10px 12px;text-align:center;font-size:13px;color:var(--navy);font-weight:500;background:#EBF0FA;cursor:pointer;transition:all .15s">Over 75</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Spousal -->
+      <div style="margin-bottom:22px">
+        <label style="font-size:13px;font-weight:500;color:var(--navy);display:block;margin-bottom:10px">Spousal / civil partner exemption?</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <label style="cursor:pointer">
+            <input type="radio" name="spouse" id="spouseYes" value="yes" onchange="calc()" style="display:none">
+            <div class="radio-pill" id="pill-spouseYes" onclick="selectRadio('spouseYes')" style="border:1.5px solid var(--border);border-radius:6px;padding:10px 12px;text-align:center;font-size:13px;color:var(--text-mid);cursor:pointer;transition:all .15s">Yes &mdash; spouse</div>
+          </label>
+          <label style="cursor:pointer">
+            <input type="radio" name="spouse" id="spouseNo" value="no" onchange="calc()" checked style="display:none">
+            <div class="radio-pill" id="pill-spouseNo" onclick="selectRadio('spouseNo')" style="border:1.5px solid var(--navy);border-radius:6px;padding:10px 12px;text-align:center;font-size:13px;color:var(--navy);font-weight:500;background:#EBF0FA;cursor:pointer;transition:all .15s">No &mdash; children</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Tax rate -->
+      <div style="margin-bottom:22px">
+        <label style="font-size:13px;font-weight:500;color:var(--navy);display:block;margin-bottom:10px">Beneficiary income tax rate</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+          <label style="cursor:pointer">
+            <input type="radio" name="tax" id="tax20" value="0.20" onchange="calc()" style="display:none">
+            <div class="radio-pill" id="pill-tax20" onclick="selectRadio('tax20')" style="border:1.5px solid var(--border);border-radius:6px;padding:10px 8px;text-align:center;font-size:13px;color:var(--text-mid);cursor:pointer;transition:all .15s">20%</div>
+          </label>
+          <label style="cursor:pointer">
+            <input type="radio" name="tax" id="tax40" value="0.40" onchange="calc()" style="display:none">
+            <div class="radio-pill" id="pill-tax40" onclick="selectRadio('tax40')" style="border:1.5px solid var(--border);border-radius:6px;padding:10px 8px;text-align:center;font-size:13px;color:var(--text-mid);cursor:pointer;transition:all .15s">40%</div>
+          </label>
+          <label style="cursor:pointer">
+            <input type="radio" name="tax" id="tax45" value="0.45" onchange="calc()" checked style="display:none">
+            <div class="radio-pill" id="pill-tax45" onclick="selectRadio('tax45')" style="border:1.5px solid var(--navy);border-radius:6px;padding:10px 8px;text-align:center;font-size:13px;color:var(--navy);font-weight:500;background:#EBF0FA;cursor:pointer;transition:all .15s">45%</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Adviser fee -->
+      <div style="margin-bottom:4px">
+        <label style="font-size:13px;font-weight:500;color:var(--navy);display:block;margin-bottom:8px">Adviser fee <span style="font-size:11px;font-weight:400;color:var(--text-light)">(optional &mdash; default &pound;12,500)</span></label>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:13px;color:var(--text-mid)">&pound;</span>
+          <input type="number" id="adviserFee" value="12500" min="0" max="50000" step="500"
+            oninput="calc()"
+            style="flex:1;border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;font-size:14px;color:var(--navy);font-family:'DM Sans',sans-serif;outline:none">
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-light);font-size:11.5px;color:var(--text-light);line-height:1.6">
+        Charges applied: 2% set-up (capped &pound;10,000) &middot; 1% AMC (capped &pound;1,600 pa) over 2 years &middot; Preference Share &pound;750
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div>
+      <!-- Big comparison -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+        <div style="background:var(--red-bg);border:1px solid rgba(181,32,32,0.18);border-radius:var(--rl);padding:24px">
+          <div style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--red);margin-bottom:12px">Without the FPA &middot; From April 2027</div>
+          <div id="res-net-without" style="font-family:'Playfair Display',serif;font-size:42px;font-weight:400;color:var(--red);line-height:1;margin-bottom:8px">&pound;165,000</div>
+          <div id="res-pct-without" style="font-size:13px;color:var(--red);opacity:0.8">33p in every pound reaches beneficiaries</div>
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(181,32,32,0.15)">
+            <div id="res-iht-line" style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:#7a3333"><span>IHT @ 40%</span><span id="res-iht">&minus;&pound;200,000</span></div>
+            <div id="res-it-line" style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:#7a3333"><span>Income tax on residual</span><span id="res-it">&minus;&pound;135,000</span></div>
+          </div>
+        </div>
+        <div style="background:var(--green-bg);border:1px solid rgba(10,112,80,0.2);border-radius:var(--rl);padding:24px">
+          <div style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);margin-bottom:12px">With the FPA &middot; After 2 years</div>
+          <div id="res-net-with" style="font-family:'Playfair Display',serif;font-size:42px;font-weight:400;color:var(--green);line-height:1;margin-bottom:8px">&pound;472,700</div>
+          <div id="res-pct-with" style="font-size:13px;color:var(--green);opacity:0.8">94p in every pound reaches beneficiaries</div>
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(10,112,80,0.15)">
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:#1a5c3a"><span>IHT &mdash; 100% BPR</span><span style="font-weight:500">&pound;0</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:#1a5c3a"><span>Income tax via Pref Share</span><span style="font-weight:500">&pound;0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saving banner -->
+      <div id="saving-banner" style="background:var(--navy);border-radius:var(--rl);padding:22px 28px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px">Total benefit to beneficiaries</div>
+          <div id="res-saving" style="font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);font-weight:400">Better off by &pound;307,700</div>
+        </div>
+        <div style="text-align:right">
+          <div id="res-rate" style="font-family:'Playfair Display',serif;font-size:28px;color:white;font-weight:400">67%</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:3px">effective tax rate without FPA</div>
+        </div>
+      </div>
+
+      <!-- Detailed breakdown -->
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:20px">
+        <div style="background:var(--navy);padding:12px 20px;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:white;display:grid;grid-template-columns:1fr 1fr 1fr"><span>Item</span><span style="text-align:right">Without FPA</span><span style="text-align:right">With FPA</span></div>
+        <div class="calc-row"><span>Pension fund</span><span id="b-fund1"></span><span id="b-fund2"></span></div>
+        <div class="calc-row"><span>FPA charges</span><span style="color:var(--text-light)">&mdash;</span><span id="b-charges"></span></div>
+        <div class="calc-row"><span>IHT</span><span id="b-iht1"></span><span style="color:var(--green);font-weight:500">&pound;0</span></div>
+        <div class="calc-row"><span>Income tax on death</span><span id="b-it1"></span><span style="color:var(--green);font-weight:500">&pound;0</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:14px 20px;background:var(--cream)"><span style="font-weight:600;color:var(--navy)">Net to beneficiaries</span><span id="b-net1" style="text-align:right;font-weight:600;color:var(--red)"></span><span id="b-net2" style="text-align:right;font-weight:600;color:var(--green)"></span></div>
+      </div>
+
+      <!-- Within 2 years note -->
+      <div id="pre2yr-box" style="background:var(--blue-bg);border:1px solid rgba(28,52,97,0.18);border-radius:var(--r);padding:16px 20px;margin-bottom:20px">
+        <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--navy);margin-bottom:8px">If death occurs within the 2-year BPR window</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:13px;color:var(--text-mid)">
+          <div>Income tax via Pref Share: <strong style="color:var(--green)">&pound;0 (immediate)</strong></div>
+          <div>IHT: <span id="pre2yr-iht" style="font-weight:500;color:var(--red)"></span> (BPR not yet qualified)</div>
+        </div>
+        <div style="margin-top:8px;font-size:13px;color:var(--text-mid)">Net to beneficiaries within 2 years: <strong id="pre2yr-net" style="color:var(--navy)"></strong> &mdash; still significantly better than without the FPA.</div>
+      </div>
+
+      <!-- CTA -->
+      <div style="background:var(--gold);border-radius:var(--rl);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+        <div>
+          <div style="font-size:14px;font-weight:600;color:white;margin-bottom:4px">Get a personalised illustration for this client</div>
+          <div id="cta-summary" style="font-size:13px;color:rgba(255,255,255,0.8)">Book a meeting to discuss the full analysis.</div>
+        </div>
+        <a href="https://link.aetas-wealth.com/widget/booking/65kC9dm2WgkoxziAWlFE" target="_blank"
+          style="flex-shrink:0;background:white;color:var(--navy);padding:12px 22px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;font-family:'DM Sans',sans-serif">Book a Meeting</a>
+      </div>
+
+      <div style="margin-top:16px;font-size:11.5px;color:var(--text-light);line-height:1.7">
+        All figures are illustrative only. Assumes no investment growth and 2-year holding period for BPR. Charges: 2% set-up (capped &pound;10,000), 1% AMC (capped &pound;1,600 pa), Preference Share &pound;750. BPR outcomes are not guaranteed. Individual financial advice required. Aetas Wealth / Insight Financial Associates Ltd, FCA No. 458421.
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQs -->
 <section id="tab-faqs" class="section">
   <div class="tag">Common Questions</div>
@@ -748,7 +917,119 @@ function showTab(id,btn){
   document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   if(btn&&btn.classList)btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
+
+function syncSlider(name){
+  const inp = document.getElementById(name+'Input');
+  const sld = document.getElementById(name+'Slider');
+  if(inp&&sld) sld.value = Math.min(Math.max(inp.value, sld.min), sld.max);
+}
+function syncInput(name){
+  const inp = document.getElementById(name+'Input');
+  const sld = document.getElementById(name+'Slider');
+  if(inp&&sld) inp.value = sld.value;
+}
+
+function selectRadio(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const name = el.name;
+  // Deselect all in group
+  document.querySelectorAll('input[name="'+name+'"]').forEach(r=>{
+    const pill = document.getElementById('pill-'+r.id);
+    if(pill){
+      pill.style.border='1.5px solid var(--border)';
+      pill.style.color='var(--text-mid)';
+      pill.style.fontWeight='400';
+      pill.style.background='transparent';
+    }
+    r.checked=false;
+  });
+  // Select clicked
+  el.checked=true;
+  const pill=document.getElementById('pill-'+id);
+  if(pill){
+    pill.style.border='1.5px solid var(--navy)';
+    pill.style.color='var(--navy)';
+    pill.style.fontWeight='500';
+    pill.style.background='#EBF0FA';
+  }
+  calc();
+}
+
+function fmt(n){
+  if(n===0) return '£0';
+  const abs = Math.abs(Math.round(n));
+  const s = '£'+abs.toLocaleString('en-GB');
+  return n<0 ? '−'+s : s;
+}
+function fmtNeg(n){ return n===0?'£0':'−£'+Math.abs(Math.round(n)).toLocaleString('en-GB'); }
+function pct(n,total){ return total===0?'0':Math.round((n/total)*100)+''; }
+
+function calc(){
+  const fund = parseFloat(document.getElementById('fundInput').value)||500000;
+  const over75 = document.getElementById('ageOver').checked;
+  const spousal = document.getElementById('spouseYes').checked;
+  const taxRate = parseFloat(document.querySelector('input[name="tax"]:checked')?.value||0.45);
+  const advFee = parseFloat(document.getElementById('adviserFee').value)||12500;
+
+  // Charges
+  const setup = Math.min(fund*0.02, 10000);
+  const amc = Math.min(fund*0.01, 1600)*2; // 2 years
+  const prefShare = 750;
+  const totalCharges = setup + amc + prefShare + advFee;
+  const fpaFund = fund - totalCharges;
+
+  // Without FPA (from April 2027)
+  const iht_without = spousal ? 0 : fund*0.4;
+  const residual_without = fund - iht_without;
+  const it_without = (over75 && !spousal) ? residual_without*taxRate : 0;
+  const net_without = residual_without - it_without;
+  const effectiveRate = fund>0 ? Math.round(((fund-net_without)/fund)*100) : 0;
+
+  // With FPA after 2 years
+  const net_with = fpaFund; // IHT=0, IT=0
+  const saving = net_with - net_without;
+
+  // Within 2 years (BPR not yet qualified)
+  const iht_pre2 = spousal ? 0 : fpaFund*0.4;
+  const net_pre2 = fpaFund - iht_pre2;
+
+  // Update UI
+  document.getElementById('res-net-without').textContent = fmt(net_without);
+  document.getElementById('res-pct-without').textContent = pct(net_without,fund)+'p in every pound reaches beneficiaries';
+  document.getElementById('res-net-with').textContent = fmt(net_with);
+  document.getElementById('res-pct-with').textContent = pct(net_with,fund)+'p in every pound reaches beneficiaries';
+  document.getElementById('res-iht').textContent = iht_without===0?'£0':fmtNeg(iht_without);
+  document.getElementById('res-it').textContent = it_without===0?'£0 (under 75)':fmtNeg(it_without);
+  document.getElementById('res-saving').textContent = 'Better off by '+fmt(saving);
+  document.getElementById('res-rate').textContent = effectiveRate+'%';
+
+  // Breakdown table
+  document.getElementById('b-fund1').textContent = fmt(fund);
+  document.getElementById('b-fund2').textContent = fmt(fund);
+  document.getElementById('b-charges').textContent = fmtNeg(totalCharges);
+  document.getElementById('b-charges').style.color = 'var(--text-mid)';
+  document.getElementById('b-iht1').textContent = iht_without===0?'£0 (spousal)':fmtNeg(iht_without);
+  document.getElementById('b-iht1').style.color = iht_without===0?'var(--green)':'var(--red)';
+  document.getElementById('b-it1').textContent = it_without===0?'£0'+(over75?'':' (under 75)'):fmtNeg(it_without);
+  document.getElementById('b-it1').style.color = it_without===0?'var(--green)':'var(--red)';
+  document.getElementById('b-net1').textContent = fmt(net_without);
+  document.getElementById('b-net2').textContent = fmt(net_with);
+
+  // Pre-2yr box
+  document.getElementById('pre2yr-iht').textContent = iht_pre2===0?'£0 (spousal exemption)':fmtNeg(iht_pre2);
+  document.getElementById('pre2yr-net').textContent = fmt(net_pre2);
+
+  // CTA summary
+  document.getElementById('cta-summary').textContent =
+    'Fund: '+fmt(fund)+' · Without FPA: '+fmt(net_without)+' · With FPA: '+fmt(net_with)+' · Saving: '+fmt(saving);
+}
+
+// Init
+calc();
+
 function toggleCase(card){const b=card.querySelector('.cb');const o=b.classList.contains('open');b.classList.toggle('open',!o);card.classList.toggle('open',!o)}
 function toggleFaq(el){el.parentElement.classList.toggle('open')}
 </script>
