@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexible Life Annuity (FLA) — London & Colonial Assurance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1B3E;--navy-mid:#1C3461;--gold:#B8820A;--cream:#FAFAF7;--bg:#F2F1EE;--white:#FFFFFF;--border:#DDD9CF;--border-light:#EAE8E2;--text:#1A1A2A;--text-mid:#4A4956;--text-light:#888097;--green:#0A7050;--green-bg:#EBF7F1;--red:#B52020;--red-bg:#FDF0F0;--blue:#1C3461;--blue-bg:#EBF0FA;--amber:#92650A;--amber-bg:#FFF8E6;--r:8px;--rl:12px;--fla:#0A7050;--fla-bg:#EBF7F1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.header{background:var(--navy);color:white;padding:0 32px;position:sticky;top:0;z-index:100;display:flex;align-items:stretch;border-bottom:1px solid rgba(255,255,255,0.12)}
+.hbrand{display:flex;align-items:center;gap:12px;padding:14px 24px 14px 0;border-right:1px solid rgba(255,255,255,0.12);margin-right:24px;flex-shrink:0;text-decoration:none}
+.hlogo{width:34px;height:34px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--navy);font-family:'Playfair Display',serif;flex-shrink:0}
+.hname{font-size:13px;font-weight:500;color:white;line-height:1.3}
+.hsub{font-size:11px;opacity:0.6;display:block;font-weight:300;color:white}
+.nav{display:flex;align-items:stretch;gap:4px;margin-left:auto}
+.nbtn{display:flex;align-items:center;padding:0 18px;font-size:13px;font-weight:400;color:rgba(255,255,255,0.65);text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s}
+.nbtn:hover{color:white}
+.nbtn.active{color:white;border-bottom-color:var(--gold);font-weight:500}
+.urgency{background:var(--amber-bg);border-bottom:1px solid rgba(184,130,10,0.4);padding:9px 32px;font-size:13px;color:var(--amber)}
+
+/* ── Hero (green accent for FLA) ── */
+.hero{background:var(--navy);padding:52px 32px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-60px;right:-60px;width:400px;height:400px;border-radius:50%;background:rgba(10,112,80,0.07);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(10,112,80,0.2);border:1px solid rgba(10,112,80,0.35);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#4dd4a0;margin-bottom:20px}
+.hero-title{font-family:'Playfair Display',serif;font-size:42px;font-weight:400;color:white;line-height:1.15;margin-bottom:16px;max-width:700px}
+.hero-title em{color:var(--gold);font-style:italic}
+.hero-desc{font-size:16px;color:rgba(255,255,255,0.7);max-width:640px;line-height:1.75;margin-bottom:36px}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.hstat{display:flex;flex-direction:column;gap:3px}
+.hstat-v{font-family:'Playfair Display',serif;font-size:26px;color:white;font-weight:500;line-height:1}
+.hstat-l{font-size:12px;color:rgba(255,255,255,0.5)}
+
+/* ── Main ── */
+.main{max-width:1200px;margin:0 auto;padding:40px 32px}
+.sh{margin-bottom:24px}
+.sh-tag{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:6px}
+.sh-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;color:var(--navy);line-height:1.2}
+.divider{height:1px;background:var(--border);margin:36px 0}
+
+/* ── TES rates ── */
+.tesgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:20px}
+.tesc{background:var(--white);padding:20px 12px;text-align:center}
+.tesc.h{background:var(--navy)}
+.tesage{color:white;font-size:12px;font-weight:500;letter-spacing:0.05em;display:block;margin-bottom:2px}
+.tesr{font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:var(--green);display:block;margin:8px 0 4px}
+.tesl{font-size:11px;color:var(--text-light)}
+
+/* ── Banner ── */
+.hban{background:var(--navy);border-radius:var(--rl);padding:22px 28px;margin-bottom:28px;display:flex;align-items:center;gap:24px}
+.hbant{flex:1}
+.hbanl{font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px}
+.hbanh{font-family:'Playfair Display',serif;font-size:19px;color:white;line-height:1.4}
+.hbanv{font-family:'Playfair Display',serif;font-size:38px;color:var(--gold);font-weight:500;flex-shrink:0}
+
+/* ── Tables ── */
+.twrap{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:24px}
+.dt{width:100%;border-collapse:collapse;font-size:13.5px}
+.dt th{background:var(--navy);color:white;padding:11px 16px;text-align:left;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
+.dt td{padding:11px 16px;border-bottom:1px solid var(--border-light);color:var(--text-mid);vertical-align:top}
+.dt tr:last-child td{border-bottom:none}
+.dt tr:hover td{background:var(--cream)}
+td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
+
+/* ── Two col ── */
+.tcol{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:24px}
+.card-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);margin-bottom:16px}
+
+/* ── Info list ── */
+.ilist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ilist li{font-size:13.5px;color:var(--text-mid);display:flex;align-items:flex-start;gap:9px;line-height:1.55}
+.ilist li::before{content:'›';flex-shrink:0;color:var(--gold);font-size:15px;font-weight:700;line-height:1.5}
+
+/* ── Case studies ── */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.ccard{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.ccard:hover{border-color:var(--navy-mid);box-shadow:0 2px 12px rgba(13,27,62,0.08)}
+.ch{padding:18px 20px;display:flex;justify-content:space-between;align-items:flex-start}
+.cbadge{display:inline-block;font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:3px 8px;border-radius:12px;background:var(--fla-bg);color:var(--fla);margin-bottom:6px}
+.cbadge.both{background:var(--amber-bg);color:var(--amber)}
+.cn{font-family:'Playfair Display',serif;font-size:17px;color:var(--navy);margin-bottom:4px}
+.csub{font-size:12px;color:var(--text-light)}
+.csav{font-family:'Playfair Display',serif;font-size:18px;color:var(--green);font-weight:500;text-align:right}
+.csavl{font-size:11px;color:var(--text-light);display:block;text-align:right}
+.tog{color:var(--text-light);font-size:18px;transition:transform .2s;text-align:right;margin-top:4px}
+.ccard.open .tog{transform:rotate(180deg)}
+.cb{display:none;border-top:1px solid var(--border-light);padding:20px}
+.cb.open{display:block}
+.pgr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.pr{display:flex;flex-direction:column;gap:2px}
+.plbl{font-size:11px;color:var(--text-light);text-transform:uppercase;letter-spacing:0.06em}
+.pval{font-size:13px;color:var(--text)}
+.csth{font-size:11px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--text-light);margin:14px 0 8px}
+.or{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid var(--border-light);color:var(--text-mid)}
+.or:last-child{border-bottom:none}
+.ov{font-weight:500;color:var(--navy)}.ov.g{color:var(--green)}.ov.r{color:var(--red)}
+.cnote{font-size:12.5px;color:var(--text-mid);background:var(--blue-bg);border-left:3px solid var(--blue);padding:12px 14px;border-radius:0 var(--r) var(--r) 0;margin-top:14px;line-height:1.55}
+
+/* ── Note box ── */
+.nb{background:var(--blue-bg);border:1px solid rgba(28,52,97,0.2);border-radius:var(--r);padding:14px 16px;margin-bottom:20px;font-size:13px;color:var(--text-mid);line-height:1.65}
+.nb strong{color:var(--navy)}
+
+/* ── FAQ ── */
+.fqs{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:28px}
+.fqi{border-bottom:1px solid var(--border-light)}
+.fqi:last-child{border-bottom:none}
+.fqq{padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:14px;font-weight:500;color:var(--navy);transition:background .1s}
+.fqq:hover{background:var(--cream)}
+.fqch{color:var(--text-light);font-size:16px;transition:transform .2s;flex-shrink:0}
+.fqi.open .fqch{transform:rotate(180deg)}
+.fqa{display:none;padding:0 20px 16px;font-size:13.5px;color:var(--text-mid);line-height:1.75}
+.fqi.open .fqa{display:block}
+
+/* ── Action steps ── */
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.act{background:var(--navy);border-radius:var(--rl);padding:20px}
+.actn{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);display:block;margin-bottom:10px}
+.actt{font-size:13px;font-weight:500;color:white;margin-bottom:8px}
+.actb{font-size:12.5px;color:rgba(255,255,255,0.6);line-height:1.6}
+
+/* ── Disc ── */
+.disc{border-top:1px solid var(--border);margin-top:40px;padding-top:20px;font-size:12px;color:var(--text-light);line-height:1.7}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="hbrand" href="index.html">
+    <div class="hlogo">L&amp;C</div>
+    <div>
+      <span class="hname">London &amp; Colonial Assurance</span>
+      <span class="hsub">Prepared by Aetas Wealth · April 2026</span>
+    </div>
+  </a>
+  <nav class="nav">
+    <a class="nbtn" href="flexible-pension-annuity.html">Flexible Pension Annuity</a>
+    <a class="nbtn active" href="flexible-life-annuity.html">Flexible Life Annuity</a>
+  </nav>
+</header>
+
+<div class="urgency">
+  <strong>Finance Act 2026 · Royal Assent 20 March 2026.</strong>&nbsp; The FLA's Tax-Exempt Sum is permanently tax-free for life — not the 20-year time-limited deferral of an investment bond. It rises with age and rolls forward if unused.
+</div>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">FLA · Flexible Life Annuity</div>
+    <h1 class="hero-title">Permanent tax-free income —<br><em>not just deferred</em></h1>
+    <p class="hero-desc">For non-pension capital — tax-free cash, GIA proceeds, investment bond replacements. The Tax-Exempt Sum (TES) is genuinely tax-free for life, rising with age, with no 20-year end date. Combined with a Preference Share for IHT planning, it outperforms investment bonds across every dimension.</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-v">5.67%</span><span class="hstat-l">TES pa at age 65 — permanent</span></div>
+      <div class="hstat"><span class="hstat-v">9.19%</span><span class="hstat-l">TES pa at age 75 — permanent</span></div>
+      <div class="hstat"><span class="hstat-v">vs 4%</span><span class="hstat-l">Bond 5% net of 1% adviser charge</span></div>
+      <div class="hstat"><span class="hstat-v">£100k</span><span class="hstat-l">Minimum investment</span></div>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- ═══ TES RATES ═══ -->
+  <div class="sh"><span class="sh-tag">Tax-Exempt Sum</span><div class="sh-title">TES Rates by Age at Inception</div></div>
+
+  <div class="tesgrid">
+    <div class="tesc h"><span class="tesage">Age 55</span></div>
+    <div class="tesc h"><span class="tesage">Age 60</span></div>
+    <div class="tesc h"><span class="tesage">Age 65</span></div>
+    <div class="tesc h"><span class="tesage">Age 70</span></div>
+    <div class="tesc h"><span class="tesage">Age 75</span></div>
+    <div class="tesc"><span class="tesr">3.85%</span><span class="tesl">pa permanently tax-free</span></div>
+    <div class="tesc"><span class="tesr">4.62%</span><span class="tesl">pa permanently tax-free</span></div>
+    <div class="tesc"><span class="tesr">5.67%</span><span class="tesl">pa permanently tax-free</span></div>
+    <div class="tesc"><span class="tesr">7.13%</span><span class="tesl">pa permanently tax-free</span></div>
+    <div class="tesc"><span class="tesr">9.19%</span><span class="tesl">pa permanently tax-free</span></div>
+  </div>
+  <p style="font-size:12px;color:var(--text-light);margin-bottom:28px">Indicative rates from LCA Technical Team (October 2025, per £100,000). Additional rates: age 68 ≈ 6.4% pa, age 72 ≈ 7.7% pa, age 77 ≈ 10% pa. TES recalculates upward on any top-up at current age rate. Adviser charges deducted from taxable element only — TES wholly intact.</p>
+
+  <div class="hban">
+    <div class="hbant">
+      <div class="hbanl">The Core Advantage — Permanent vs Deferred</div>
+      <div class="hbanh">The TES is a statutory return-of-capital element — genuinely tax-free for life under ITTOIA 2005. Unlike the bond's 5% annual withdrawal allowance, it never expires, never creates a chargeable event, and is never eroded by adviser charges.</div>
+    </div>
+    <div class="hbanv">For Life</div>
+  </div>
+
+  <!-- ═══ COMPARISON TABLE ═══ -->
+  <div class="sh"><span class="sh-tag">Product Comparison</span><div class="sh-title">FLA vs Onshore Investment Bond</div></div>
+
+  <div class="twrap">
+    <table class="dt">
+      <tr><th>Feature</th><th>Flexible Life Annuity (FLA)</th><th>Onshore Investment Bond</th></tr>
+      <tr><td>Tax-free element</td><td class="g">TES: <strong>permanently tax-free for life</strong></td><td class="r">5% pa tax-deferred for up to 20 years only</td></tr>
+      <tr><td>After 20 years</td><td class="g">TES continues indefinitely — no end date</td><td class="r">5% allowance expires; all income taxable</td></tr>
+      <tr><td>Nature of allowance</td><td class="g">Genuine exemption — not a deferral</td><td class="r">Deferral only — gains eventually taxable</td></tr>
+      <tr><td>CGT exposure</td><td class="g">No CGT on FLA payments ever</td><td class="r">Potential CGT on gains on surrender</td></tr>
+      <tr><td>Income tax on death</td><td class="g">None — annuity has no surrender value</td><td class="r">Chargeable event gain possible on death</td></tr>
+      <tr><td>Adviser charges vs TES</td><td class="g">Charges from taxable element; TES wholly intact</td><td class="r">Charges reduce the 5% allowance directly</td></tr>
+      <tr><td>Effective rate @ age 65</td><td class="g">5.67% pa (rising with age)</td><td class="r">~4% net after 1% adviser charge</td></tr>
+      <tr><td>Unused allowance</td><td class="g">TES rolls forward — accumulates as tax-free reservoir</td><td class="r">No meaningful roll-forward</td></tr>
+      <tr><td>Residual on death</td><td class="g">Preference Share: potential 100% BPR after 2 years</td><td class="r">Falls into estate; IHT at 40%</td></tr>
+      <tr><td>Tax-free roll-up</td><td class="g">Income tax &amp; CGT-free within the Cell</td><td>Subject to fund-level tax within bond</td></tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ PRODUCT DETAIL ═══ -->
+  <div class="sh"><span class="sh-tag">Product</span><div class="sh-title">Characteristics &amp; Structure</div></div>
+
+  <div class="tcol">
+    <div>
+      <div class="twrap" style="margin-bottom:0">
+        <table class="dt">
+          <tr><th colspan="2">Product Characteristics</th></tr>
+          <tr><td>Structure</td><td>Unit-linked purchased life annuity — single life basis; outside the pension framework</td></tr>
+          <tr><td>Income split</td><td>Each payment split between TES (permanently tax-free) and taxable element</td></tr>
+          <tr><td>TES recalculation</td><td>Rises with age at inception; recalculates upward on any subsequent top-up</td></tr>
+          <tr><td>Roll-forward</td><td>Unused TES accumulates — can be drawn in future years as a tax-free reservoir</td></tr>
+          <tr><td>Tax-free roll-up</td><td>Income tax &amp; CGT-free within the Cell</td></tr>
+          <tr><td>No CGT</td><td>FLA payments fall entirely outside capital gains tax</td></tr>
+          <tr><td>Income flexibility</td><td>Start, pause, increase, reduce to zero or take 100% at any time</td></tr>
+          <tr><td>In-specie transfers</td><td>Assets can be transferred in-specie (note: GIA gains must be realised first)</td></tr>
+          <tr><td>Minimum</td><td>£100,000</td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">How the TES Works in Practice</div>
+        <ul class="ilist">
+          <li><strong>Set at inception:</strong> The TES percentage is fixed at the outset based on age and recalculates upward on any top-up. A 65-year-old investing £100,000 receives a TES of £5,498 pa. A 75-year-old investing the same receives £8,916 pa.</li>
+          <li><strong>Permanent for life:</strong> Unlike a bond's 5% allowance, the TES never expires. It applies to every payment, forever, regardless of how long the client lives.</li>
+          <li><strong>Charges don't erode it:</strong> Adviser charges are deducted from the taxable element of the income, leaving the TES wholly intact. On a bond, charges reduce the 5% allowance directly.</li>
+          <li><strong>Roll-forward:</strong> If the client draws no income in a year, the unused TES accumulates. When they begin drawing, years of tax-free income can be taken first — a reservoir that builds while the client is still working.</li>
+          <li><strong>Top-up advantage:</strong> Any top-up at a later age recalculates at the higher age-rate — e.g. topping up at 75 applies the 9.19% rate to the new money, materially improving the overall blended TES.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ PLANNING USE CASES ═══ -->
+  <div class="sh"><span class="sh-tag">Planning</span><div class="sh-title">Common Use Cases</div></div>
+
+  <div class="tcol">
+    <div class="card">
+      <div class="card-title">Tax-Free Cash Deployment</div>
+      <ul class="ilist">
+        <li>Instead of leaving pension TFC in a savings account or investing in an onshore bond, the FLA provides a structured framework where a permanent proportion of every withdrawal is tax-free for life.</li>
+        <li>At age 65, 5.67% of the invested TFC is permanently tax-free each year — vs the bond's ~4% net. The gap widens as the client ages and top-ups are made at higher TES rates.</li>
+        <li>On death: no chargeable event, no income tax charge. The Preference Share passes the residual Cell value with potential 100% BPR after 2 years.</li>
+        <li>See <strong>Case Study: James, 65</strong> — £250,000 TFC generating £14,175 pa permanently tax-free vs the bond alternative of ~£10,000 pa tax-deferred for 20 years only.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Investment Bond Replacement</div>
+      <ul class="ilist">
+        <li>For clients with ageing investment bonds approaching their 20-year limit, the FLA offers a clean exit: surrender using top-slicing relief to manage the chargeable event gain, then reinvest net proceeds into the FLA.</li>
+        <li>The replacement provides a higher, permanent TES — no more ticking clock, no end date, and no chargeable event on death.</li>
+        <li>For a higher-rate taxpayer: the old bond generates income tax on every future excess withdrawal and a potential chargeable gain on death. The FLA eliminates both.</li>
+        <li>See <strong>Case Study: Patricia, 72</strong> — £320,000 ageing bond replaced with FLA generating £21,560 pa permanently tax-free (TES ~7.7% at age 72).</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">GIA Capital — TES Roll-Forward</div>
+      <ul class="ilist">
+        <li>For clients with large General Investment Accounts, the FLA provides a framework for phased entry: realise GIA gains over multiple tax years (using annual CGT exempt amounts), then invest proceeds in the FLA.</li>
+        <li>While still working (and in the higher-rate band), draw zero income from the FLA. The unused TES accumulates as a roll-forward reservoir for retirement.</li>
+        <li>Assets grow tax-free in the Cell during the accumulation phase — no income tax, no CGT. At retirement (when the client is in a lower tax band), draw the accumulated rolled-forward TES: potentially years of fully tax-free income.</li>
+        <li>See <strong>Case Study: Graham, 68</strong> — £400,000 GIA, TES 6.4% pa at age 68, rolling forward over 4 years before retirement.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Combined FPA + FLA (Full Solution)</div>
+      <ul class="ilist">
+        <li>For clients with a large DC pension, the optimum approach crystallises the pension and deploys both products simultaneously: tax-free cash into FLA, residual pension fund into FPA.</li>
+        <li>Each product runs its own ring-fenced Cell and its own Preference Share — both qualifying for BPR after 2 years, both eliminating income tax on death.</li>
+        <li>The FLA provides permanent tax-free income from the TFC; the FPA provides flexible pension income with double-whammy protection on the larger pension pot.</li>
+        <li>See <strong>Case Study: Alan &amp; Helen, 73 &amp; 70</strong> — £1m pension split into £750k FPA + £250k FLA. Up to £602,500 in IHT and income tax saved on death after 2 years.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ CASE STUDIES ═══ -->
+  <div class="sh"><span class="sh-tag">Illustrative examples — advice required in all cases</span><div class="sh-title">Client Case Studies</div></div>
+
+  <div class="case-grid">
+
+    <div class="ccard" onclick="toggleCase(this)">
+      <div class="ch">
+        <div><span class="cbadge">FLA</span><div class="cn">James, Age 65</div><div class="csub">Married · £250,000 pension tax-free cash · FLA vs onshore bond</div></div>
+        <div><div class="csav">£14,175 pa</div><div class="csavl">permanent TES (5.67%) vs ~£10,000 bond</div><div class="tog">∨</div></div>
+      </div>
+      <div class="cb">
+        <div class="pgr">
+          <div class="pr"><span class="plbl">Age</span><span class="pval">65, married, two adult children</span></div>
+          <div class="pr"><span class="plbl">Capital</span><span class="pval">£250,000 pension tax-free cash</span></div>
+          <div class="pr"><span class="plbl">Other income</span><span class="pval">Final salary pension £28,000 pa — basic-rate taxpayer</span></div>
+          <div class="pr"><span class="plbl">Alternative considered</span><span class="pval">Onshore investment bond suggested by another adviser</span></div>
+        </div>
+        <div class="csth">FLA vs Bond — £250,000 invested at age 65</div>
+        <div class="or"><span>FLA TES @ 5.67%</span><span class="ov g">£14,175 pa — permanently tax-free for life</span></div>
+        <div class="or"><span>Bond 5% net of 1% adviser charge</span><span class="ov">~£10,000 pa — tax-deferred, max 20 years</span></div>
+        <div class="or"><span>FLA — income tax on death</span><span class="ov g">None ever (no surrender value)</span></div>
+        <div class="or"><span>Bond — income tax on death</span><span class="ov r">Chargeable event gain possible</span></div>
+        <div class="or"><span>FLA — IHT on residual</span><span class="ov g">100% BPR via Pref Share after 2 years</span></div>
+        <div class="or"><span>Bond — IHT on residual</span><span class="ov r">Estate asset; IHT at 40%</span></div>
+        <div class="cnote">If James tops up the FLA at age 75 with a further £100,000, the TES on the top-up recalculates at the 9.19% rate — significantly increasing total annual tax-free income. The FLA improves with age; the bond does not. Over a 20-year horizon the advantage is substantial.</div>
+      </div>
+    </div>
+
+    <div class="ccard" onclick="toggleCase(this)">
+      <div class="ch">
+        <div><span class="cbadge">FLA</span><div class="cn">Patricia, Age 72</div><div class="csub">Widowed · £320,000 ageing investment bond · Replacement strategy</div></div>
+        <div><div class="csav">£21,560 pa</div><div class="csavl">permanent TES at ~7.7% (age 72)</div><div class="tog">∨</div></div>
+      </div>
+      <div class="cb">
+        <div class="pgr">
+          <div class="pr"><span class="plbl">Age</span><span class="pval">72, widowed, one adult daughter</span></div>
+          <div class="pr"><span class="plbl">Existing bond</span><span class="pval">£320,000; 18 years old; gain £160,000; under 2 yrs of 5% allowance remaining</span></div>
+          <div class="pr"><span class="plbl">Other income</span><span class="pval">State pension £11,500 + rental £24,000 pa — higher-rate taxpayer</span></div>
+          <div class="pr"><span class="plbl">Problem</span><span class="pval">Bond nearing 20-year limit; large taxable gain looming on all future income</span></div>
+        </div>
+        <div class="csth">The Strategy</div>
+        <div class="or"><span>Surrender bond using top-slicing relief (18-yr slice = £8,889 pa equivalent)</span><span class="ov g">Tax-managed exit</span></div>
+        <div class="or"><span>Reinvest ~£280,000 net proceeds into FLA at age 72</span><span class="ov g">TES ~7.7% = £21,560 pa</span></div>
+        <div class="or"><span>Old bond — 5% allowance exhausted; then all taxable at 40%</span><span class="ov r">Allowance expired</span></div>
+        <div class="or"><span>FLA TES — continues permanently, no end date</span><span class="ov g">For life</span></div>
+        <div class="or"><span>Death — no chargeable event; Pref Share to daughter</span><span class="ov g">No income tax; 100% BPR after 2 yrs</span></div>
+        <div class="cnote">Patricia takes only the TES each year — avoiding income tax altogether on this income stream while it remains permanent. The old bond would have generated a substantial taxable event on death. Her daughter inherits the residual Cell value via the Preference Share rather than a bond value subject to 40% IHT.</div>
+      </div>
+    </div>
+
+    <div class="ccard" onclick="toggleCase(this)">
+      <div class="ch">
+        <div><span class="cbadge">FLA</span><div class="cn">Graham, Age 68</div><div class="csub">Married · £400,000 GIA · TES roll-forward strategy</div></div>
+        <div><div class="csav">6.4% TES</div><div class="csavl">pa at age 68 — accumulating for retirement</div><div class="tog">∨</div></div>
+      </div>
+      <div class="cb">
+        <div class="pgr">
+          <div class="pr"><span class="plbl">Age</span><span class="pval">68, married — retiring at 72</span></div>
+          <div class="pr"><span class="plbl">Capital</span><span class="pval">£400,000 GIA; unrealised gains £120,000</span></div>
+          <div class="pr"><span class="plbl">Income now</span><span class="pval">Consultancy £65,000 pa — higher-rate taxpayer</span></div>
+          <div class="pr"><span class="plbl">Problem</span><span class="pval">CGT exempt amount now only £3,000. All GIA income taxable at 40%+.</span></div>
+        </div>
+        <div class="csth">The Strategy</div>
+        <div class="or"><span>Phase GIA into FLA over 3–4 yrs (£3k CGT exempt + wife's allowance each year)</span><span class="ov g">CGT managed, phased</span></div>
+        <div class="or"><span>Draw zero FLA income while consulting at higher rate</span><span class="ov g">TES rolls forward — reservoir accumulates</span></div>
+        <div class="or"><span>£400,000 grows tax-free in Cell (no income tax, no CGT)</span><span class="ov g">Tax-free growth</span></div>
+        <div class="or"><span>At retirement (age 72): draw rolled-forward TES</span><span class="ov g">Years of fully tax-free income</span></div>
+        <div class="or"><span>Death — Pref Share; 100% BPR after 2 yrs; no income tax</span><span class="ov g">Full estate protection</span></div>
+        <div class="cnote">Important: GIA gains must be realised before transferring to the FLA — this is not an in-specie transfer from a GIA directly. Plan as a phased, multi-year strategy to minimise CGT. TES at retirement will also benefit from top-up recalculation at the age-72 rate.</div>
+      </div>
+    </div>
+
+    <div class="ccard" onclick="toggleCase(this)">
+      <div class="ch">
+        <div><span class="cbadge both">FPA + FLA Combined</span><div class="cn">Alan &amp; Helen, 73 &amp; 70</div><div class="csub">£1,000,000 DC pension · Full Double Whammy Solution</div></div>
+        <div><div class="csav">£602,500+</div><div class="csavl">total IHT &amp; income tax saved (post 2 yrs)</div><div class="tog">∨</div></div>
+      </div>
+      <div class="cb">
+        <div class="pgr">
+          <div class="pr"><span class="plbl">Ages</span><span class="pval">Alan 73, Helen 70</span></div>
+          <div class="pr"><span class="plbl">Alan's pension</span><span class="pval">£1,000,000 SIPP — TFC not yet taken</span></div>
+          <div class="pr"><span class="plbl">FLA element</span><span class="pval">£250,000 TFC → FLA (Helen, age 70). TES @ 7.13% = £17,825 pa tax-free</span></div>
+          <div class="pr"><span class="plbl">FPA element</span><span class="pval">£750,000 → FPA (Alan, age 73). £40,000 pa PAYE income. Pref Share to children.</span></div>
+        </div>
+        <div class="csth">FLA Contribution to the Combined Outcome</div>
+        <div class="or"><span>TES @ 7.13% on £250,000</span><span class="ov g">£17,825 pa permanently tax-free</span></div>
+        <div class="or"><span>Annual income tax saving (TES at 7.13% vs all-taxable)</span><span class="ov g">~£7,130 pa saved ongoing</span></div>
+        <div class="or"><span>FLA: IHT saved on £250k after 2 yrs (100% BPR)</span><span class="ov g">£100,000</span></div>
+        <div class="or"><span>FLA: no income tax charge on death</span><span class="ov g">No chargeable event ever</span></div>
+        <div class="or"><span>Total (FPA + FLA) saved on death after 2 yrs</span><span class="ov g" style="font-size:15px">Up to £602,500</span></div>
+        <div class="cnote">Both products run simultaneously with separate Preference Shares in legally ring-fenced Cells. Alan's children receive the FPA residual via his will. Helen benefits from the FLA's TES income and retains the Preference Share in her own estate with her own beneficiary planning. The FLA adds a material income tax saving every year, compounding over time.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ REGULATORY ═══ -->
+  <div class="sh"><span class="sh-tag">Credentials</span><div class="sh-title">Regulatory Framework — FLA Specific Points</div></div>
+
+  <div class="twrap">
+    <table class="dt">
+      <tr><th>Element</th><th>Detail</th></tr>
+      <tr><td><strong>FCA &amp; GFSC Regulation</strong></td><td>Same dual regulation as FPA — FCA Ref 20763 and GFSC Permission No. 5191. All products carry 100% FSCS protection, no cap.</td></tr>
+      <tr><td><strong>TES Tax Status</strong></td><td>Governed by ITTOIA 2005 rules on purchased life annuities. HMRC has confirmed the tax-free status of the TES on LCA products. Adviser charges deducted from taxable element — TES wholly intact.</td></tr>
+      <tr><td><strong>No income tax on death</strong></td><td>The FLA has no surrender value. There is therefore no chargeable event or income tax charge on death — unlike onshore or offshore investment bonds where a chargeable event may arise.</td></tr>
+      <tr><td><strong>No CGT</strong></td><td>FLA payments fall entirely outside capital gains tax. The only taxation is income tax on the non-TES element of income drawn.</td></tr>
+      <tr><td><strong>BPR (Preference Share)</strong></td><td>100% Business Property Relief after 2+ years on the first £2.5m (from April 2026); 50% on the excess. Unused £2.5m BPR allowance transferable to surviving spouse or civil partner.</td></tr>
+      <tr><td><strong>PCC Cell Structure</strong></td><td>Each FLA backed by its own ring-fenced Cell under Gibraltar's Protected Cell Companies Act 2001. Assets statutorily segregated.</td></tr>
+      <tr><td><strong>ORIGO</strong></td><td>LCA participates on the ORIGO pension transfer platform, facilitating straightforward transfers where relevant (e.g. pension TFC deployment).</td></tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══ FAQs ═══ -->
+  <div class="sh"><span class="sh-tag">Common Questions</span><div class="sh-title">Adviser FAQs — FLA</div></div>
+
+  <div class="fqs">
+    <div class="fqi">
+      <div class="fqq" onclick="toggleFaq(this)">What exactly is the TES and how is it different from a bond's 5% allowance?<span class="fqch">∨</span></div>
+      <div class="fqa">The Tax-Exempt Sum is a statutory concept under ITTOIA 2005 for purchased life annuities. It represents the return-of-capital element of each payment and is <strong>genuinely tax-free for life</strong> — not deferred.<br><br>The bond's 5% annual withdrawal allowance is tax-deferred. The gains are eventually taxable on surrender, on an excess event (if cumulative withdrawals exceed the allowance), or as a chargeable event on death. The allowance also expires after 20 years.<br><br>Key practical differences:<br>• TES: permanent, genuine exemption. Bond: time-limited deferral.<br>• Adviser charges don't erode TES. Bond charges reduce the 5% allowance.<br>• TES rolls forward if unused. Bond allowance does not roll forward meaningfully.<br>• No income tax or CGT on death for the FLA. Bonds can generate chargeable gains on death.</div>
+    </div>
+    <div class="fqi">
+      <div class="fqq" onclick="toggleFaq(this)">How does the adviser charge interact with the TES?<span class="fqch">∨</span></div>
+      <div class="fqa">On the FLA, adviser charges are deducted from the <strong>taxable element</strong> of the annuity income. The TES is wholly intact regardless of the adviser charge level.<br><br>On an onshore or offshore investment bond, adviser charges reduce the 5% annual allowance directly. If the bond allows £5,000 pa tax-deferred and the adviser charge is £1,000 pa, the effective net tax-deferred allowance is only £4,000 — an effective rate of just 4%.<br><br>The FLA's 5.67% TES at age 65 (for example) remains 5.67% regardless of the adviser charge. This structural advantage compounds significantly over time for larger funds or those with higher AMCs.</div>
+    </div>
+    <div class="fqi">
+      <div class="fqq" onclick="toggleFaq(this)">Can I use the FLA for GIA capital, and how does the CGT work?<span class="fqch">∨</span></div>
+      <div class="fqa">Yes, GIA capital is one of the primary use cases for the FLA. However, GIA gains must be realised before investing in the FLA — it is not possible to transfer GIA assets in-specie directly into an FLA (unlike pension assets into the FPA).<br><br>The recommended approach is a phased strategy: realise GIA gains over multiple tax years, using the £3,000 annual CGT exempt amount (and a spouse's allowance where applicable) each year to minimise the CGT bill. Cash proceeds are then invested into the FLA.<br><br>Once inside the FLA Cell, the assets grow free of income tax and CGT. If the client is still working (higher-rate taxpayer), they simply draw no income and let the unused TES roll forward for retirement.</div>
+    </div>
+    <div class="fqi">
+      <div class="fqq" onclick="toggleFaq(this)">What happens to the FLA on death?<span class="fqch">∨</span></div>
+      <div class="fqa">The FLA is a purchased life annuity with no surrender value. On death the annuity simply ceases — there is no chargeable event, no income tax charge, and no CGT charge. This is fundamentally different from an investment bond, where death can trigger a chargeable event gain.<br><br>The residual Cell value passes via the Preference Share. After a 2-year holding period, 100% Business Property Relief applies (up to £2.5m), meaning there is also no IHT on the Preference Share proceeds.<br><br>This combination — no income tax on death ever, plus potential 100% BPR after 2 years — makes the FLA materially superior to bonds and most other non-pension wrappers for estate planning purposes.</div>
+    </div>
+    <div class="fqi">
+      <div class="fqq" onclick="toggleFaq(this)">Can I top up the FLA at a later age?<span class="fqch">∨</span></div>
+      <div class="fqa">Yes — and top-ups are one of the most powerful features of the FLA. When a client tops up at a later age, the TES on the new money is calculated at the current age rate, which is higher than the original rate. This upward recalculation applies to the top-up tranche.<br><br>For example, a client who invested at age 65 (TES 5.67%) and tops up at age 75 (TES 9.19%) materially improves their overall blended TES rate. The FLA therefore becomes more tax-efficient over time in a way that no investment bond can replicate.</div>
+    </div>
+  </div>
+
+  <!-- ═══ NEXT STEPS ═══ -->
+  <div class="sh"><span class="sh-tag">Action Plan</span><div class="sh-title">Next Steps for Advisers</div></div>
+
+  <div class="acts">
+    <div class="act"><span class="actn">01</span><div class="actt">Identify Suitable Capital</div><div class="actb">Pension tax-free cash, maturing investment bonds, GIA capital, ISA proceeds, or any post-tax savings where tax-efficient income is desired.</div></div>
+    <div class="act"><span class="actn">02</span><div class="actt">Request TES Illustration</div><div class="actb">Contact Aetas Wealth for a personalised illustration showing the TES at the client's current age and any planned top-up ages.</div></div>
+    <div class="act"><span class="actn">03</span><div class="actt">Plan GIA Entry (if relevant)</div><div class="actb">For GIA capital: map out a phased CGT realisation strategy over 3–4 tax years before committing to the FLA. Don't rush the entry.</div></div>
+    <div class="act"><span class="actn">04</span><div class="actt">Consider Combined Solution</div><div class="actb">If the client also has a large DC pension, consider FPA + FLA together. TFC into FLA, pension into FPA — two separate Cells, two Preference Shares, full double-whammy protection.</div></div>
+  </div>
+
+  <div class="disc">
+    <p><strong>For professional adviser use only. Not for client distribution.</strong></p>
+    <p style="margin-top:8px">Prepared by Aetas Wealth, a trading style of Insight Financial Associates Ltd, authorised and regulated by the Financial Conduct Authority under registration number 458421. Company No. 05054886. Registered office: Insight House, 7a Alkmaar Way, Norwich International Business Park, Norwich NR6 6BF.</p>
+    <p style="margin-top:8px">London &amp; Colonial Assurance PCC Plc is authorised by the FCA (Ref: 20763) and the Gibraltar Financial Services Commission (Permission No. 5191). All products are 'protected contracts of insurance' under FSCS with 100% policyholder protection and no cap. TES rates are indicative from LCA Technical Team October 2025 calculations.</p>
+    <p style="margin-top:8px">All case studies and figures are illustrative only, based on indicative TES rates and tax assumptions as at April 2026. Actual outcomes depend on client-specific circumstances, investment performance, longevity, future tax legislation and BPR claim outcomes. A personalised illustration and individual financial advice are required before any recommendation is made. Contact: peter.rose@aetas-wealth.com · LCA@stmgroup.online · lcalife.co.uk</p>
+  </div>
+</main>
+
+<script>
+function toggleCase(card){const b=card.querySelector('.cb');const o=b.classList.contains('open');b.classList.toggle('open',!o);card.classList.toggle('open',!o)}
+function toggleFaq(el){el.parentElement.classList.toggle('open')}
+</script>
+</body>
+</html>
