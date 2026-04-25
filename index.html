@@ -9,13 +9,15 @@
 :root{--navy:#0D1B3E;--navy-mid:#1C3461;--gold:#B8820A;--cream:#FAFAF7;--bg:#F2F1EE;--white:#FFFFFF;--border:#DDD9CF;--border-light:#EAE8E2;--text:#1A1A2A;--text-mid:#4A4956;--text-light:#888097;--green:#0A7050;--green-bg:#EBF7F1;--red:#B52020;--red-bg:#FDF0F0;--blue:#1C3461;--blue-bg:#EBF0FA;--amber:#92650A;--amber-bg:#FFF8E6;--r:8px;--rl:12px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
-.header{background:var(--navy);color:white;padding:0 32px;position:sticky;top:0;z-index:200;display:flex;align-items:stretch;border-bottom:1px solid rgba(255,255,255,0.1)}
-.hbrand{display:flex;align-items:center;padding:0 24px 0 0;border-right:1px solid rgba(255,255,255,0.12);margin-right:20px;flex-shrink:0;text-decoration:none;gap:0}
+.header{background:white;padding:0 40px;position:sticky;top:0;z-index:200;display:flex;align-items:center;border-bottom:1px solid var(--border);min-height:88px;gap:0;box-shadow:0 1px 8px rgba(13,27,62,0.06)}
+.hbrand{display:flex;align-items:baseline;gap:6px;text-decoration:none;flex-shrink:0;margin-right:40px}
+.htagline{font-size:11.5px;color:var(--text-light);letter-spacing:0.05em;text-transform:uppercase;margin-left:auto;flex-shrink:0;padding-left:32px;white-space:nowrap}
 .nav{display:flex;align-items:stretch;flex:1;overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.ntab{display:flex;align-items:center;gap:6px;padding:0 15px;font-size:13px;font-weight:400;color:rgba(255,255,255,0.58);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif}
-.ntab:hover{color:rgba(255,255,255,0.9)}.ntab.active{color:white;border-bottom-color:var(--gold);font-weight:500}
-.tdot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.4;flex-shrink:0}.ntab.active .tdot{opacity:1;background:var(--gold)}
+.ntab{display:flex;align-items:center;gap:6px;padding:0 16px;font-size:13px;font-weight:400;color:var(--text-mid);cursor:pointer;border-bottom:3px solid transparent;border-top:3px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;background:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;height:100%}
+.ntab:hover{color:var(--navy)}
+.ntab.active{color:var(--navy);border-bottom-color:var(--gold);font-weight:600}
+.tdot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.3;flex-shrink:0}.ntab.active .tdot{opacity:1;background:var(--gold)}
 .main{max-width:1200px;margin:0 auto;padding:36px 32px}
 .section{display:none}.section.active{display:block;animation:fi .2s ease}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
@@ -125,11 +127,11 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
 </head>
 <body>
 
-<!-- STICKY NAV -->
+<!-- SINGLE STICKY NAV -->
 <header class="header">
   <a class="hbrand" href="#" onclick="showTab('overview',document.querySelector('.ntab'));return false;">
-    <span style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:white">Aetas</span>
-    <span style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:#B8820A;margin-left:5px">Wealth</span>
+    <span style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#0D1B3E;letter-spacing:-0.01em">Aetas</span>
+    <span style="font-family:'Playfair Display',serif;font-size:26px;font-style:italic;font-weight:400;color:#B8820A">Wealth</span>
   </a>
   <nav class="nav">
     <button class="ntab active" onclick="showTab('overview',this)"><span class="tdot"></span>Overview</button>
@@ -140,16 +142,8 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
     <button class="ntab" onclick="showTab('costs',this)"><span class="tdot"></span>Costs &amp; Benefits</button>
     <button class="ntab" onclick="showTab('faqs',this)"><span class="tdot"></span>FAQs</button>
   </nav>
+  <span class="htagline">Pension Legacy Planning &middot; Adviser Guide &middot; April 2026</span>
 </header>
-
-<!-- TOPBAR -->
-<div style="background:#F5F3EF;border-bottom:1px solid #E5E2D9;padding:13px 32px;display:flex;align-items:center;justify-content:space-between">
-  <div style="display:flex;align-items:baseline;gap:6px">
-    <span style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#0D1B3E">Aetas</span>
-    <span style="font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:#B8820A">Wealth</span>
-  </div>
-  <span style="font-size:12px;color:#888097;letter-spacing:0.05em;text-transform:uppercase">Pension Legacy Planning &middot; Professional Adviser Guide &middot; April 2026</span>
-</div>
 
 <!-- HERO -->
 <div style="background:#0D1B3E;padding:64px 32px 60px;position:relative;overflow:hidden">
