@@ -123,7 +123,11 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
 .inl{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-light);margin-bottom:8px;display:block}
 .inh{font-family:'Playfair Display',serif;font-size:15px;color:var(--navy);margin-bottom:8px;line-height:1.3}.int{font-size:13px;color:var(--text-mid);line-height:1.6}
 .disc{border-top:1px solid var(--border);margin-top:40px;padding-top:20px;font-size:12px;color:var(--text-light);line-height:1.7}
-.calc-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:11px 20px;border-bottom:1px solid var(--border-light);font-size:13px;color:var(--text-mid)}
+.article-body p{font-size:15px;color:var(--text-mid);line-height:1.85;margin-bottom:18px}
+.article-body h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--navy);margin:28px 0 12px}
+.article-body ul{margin:0 0 18px 20px;display:flex;flex-direction:column;gap:8px}
+.article-body ul li{font-size:14.5px;color:var(--text-mid);line-height:1.65}
+.article-body strong{color:var(--navy);font-weight:600}padding:11px 20px;border-bottom:1px solid var(--border-light);font-size:13px;color:var(--text-mid)}
 .calc-row span:not(:first-child){text-align:right}
 .calc-row:hover{background:var(--cream)}
 
@@ -235,6 +239,7 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
     <button class="ntab" onclick="showTab('cases',this)"><span class="tdot"></span>Case Studies</button>
     <button class="ntab" onclick="showTab('costs',this)"><span class="tdot"></span>Costs &amp; Benefits</button>
     <button class="ntab" onclick="showTab('calc',this)"><span class="tdot"></span>Tax Calculator</button>
+    <button class="ntab" onclick="showTab('insights',this)"><span class="tdot"></span>Insights</button>
     <button class="ntab" onclick="showTab('faqs',this)"><span class="tdot"></span>FAQs</button>
   </nav>
   <span class="htagline">Pension Legacy Planning &middot; Adviser Guide &middot; April 2026</span>
@@ -944,6 +949,63 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
         All figures are illustrative only. Assumes no investment growth and 2-year holding period for BPR. Charges: 2% set-up (capped &pound;10,000), 1% AMC (capped &pound;1,600 pa), Preference Share &pound;750. BPR outcomes are not guaranteed. Individual financial advice required. Aetas Wealth / Insight Financial Associates Ltd, FCA No. 458421.
       </div>
     </div>
+  </div>
+</section>
+
+<!-- INSIGHTS -->
+<section id="tab-insights" class="section">
+  <div class="tag">Adviser Briefings &middot; April 2026</div>
+  <h2 class="serif" style="font-size:30px">Insights</h2>
+  <p class="intro">Briefing notes for advisers, compliance teams and their professional networks. Each article has its own page — share directly with colleagues, solicitors and accountants.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:32px">
+
+    <a href="insight-double-whammy.html" style="text-decoration:none;background:var(--white);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;display:block;transition:box-shadow .15s,border-color .15s" onmouseover="this.style.boxShadow='0 4px 16px rgba(13,27,62,0.1)';this.style.borderColor='#1C3461'" onmouseout="this.style.boxShadow='none';this.style.borderColor='#DDD9CF'">
+      <div style="background:var(--navy);padding:28px 24px 24px">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(184,130,10,0.85);margin-bottom:12px">Legislation &middot; April 2026</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:white;line-height:1.3;margin:0">The Double Whammy &mdash; What Finance Act 2026 Actually Does to Your Clients' Pensions</h3>
+      </div>
+      <div style="padding:20px 24px">
+        <p style="font-size:13.5px;color:var(--text-mid);line-height:1.7;margin-bottom:16px">For decades, unused pension funds were the most tax-efficient asset to pass on. Finance Act 2026 ends that. From April 2027 two taxes hit simultaneously &mdash; and the combined effect is devastating for clients over 75.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;color:var(--text-light)">8 min read</span>
+          <span style="font-size:13px;font-weight:500;color:var(--navy)">Read article &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="insight-bpr-legal-basis.html" style="text-decoration:none;background:var(--white);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;display:block;transition:box-shadow .15s,border-color .15s" onmouseover="this.style.boxShadow='0 4px 16px rgba(13,27,62,0.1)';this.style.borderColor='#1C3461'" onmouseout="this.style.boxShadow='none';this.style.borderColor='#DDD9CF'">
+      <div style="background:#1a4a2e;padding:28px 24px 24px">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(184,130,10,0.85);margin-bottom:12px">Tax Law &middot; April 2026</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:white;line-height:1.3;margin:0">Business Property Relief on a Pension Annuity &mdash; The Legal Basis, Explained</h3>
+      </div>
+      <div style="padding:20px 24px">
+        <p style="font-size:13.5px;color:var(--text-mid);line-height:1.7;margin-bottom:16px">The claim that a Preference Share in a Gibraltar Protected Cell Company qualifies for 100% BPR is not self-evident. Here is the full legal argument under s105(1)(bb) IHTA 1984 &mdash; the four conditions, the evidence, and the track record.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;color:var(--text-light)">10 min read</span>
+          <span style="font-size:13px;font-weight:500;color:var(--navy)">Read article &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="insight-executor-liability.html" style="text-decoration:none;background:var(--white);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;display:block;transition:box-shadow .15s,border-color .15s" onmouseover="this.style.boxShadow='0 4px 16px rgba(13,27,62,0.1)';this.style.borderColor='#1C3461'" onmouseout="this.style.boxShadow='none';this.style.borderColor='#DDD9CF'">
+      <div style="background:#6b1f1f;padding:28px 24px 24px">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(184,130,10,0.85);margin-bottom:12px">Risk &middot; April 2026</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:white;line-height:1.3;margin:0">Executor Liability &mdash; The Hidden Risk in Finance Act 2026 Most Advisers Haven't Flagged Yet</h3>
+      </div>
+      <div style="padding:20px 24px">
+        <p style="font-size:13.5px;color:var(--text-mid);line-height:1.7;margin-bottom:16px">Finance Act 2026 doesn't just create a new tax charge &mdash; it creates a new personal liability for executors. From April 2027, a child acting as executor may face a &pound;200,000 personal liability before receiving a penny themselves.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:12px;color:var(--text-light)">6 min read</span>
+          <span style="font-size:13px;font-weight:500;color:var(--navy)">Read article &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="disc">
+    <p><strong>For professional adviser use only. Not for client distribution.</strong> All articles are written by Aetas Wealth, a trading style of Insight Financial Associates Ltd, authorised and regulated by the FCA (No. 458421). Content reflects the law as at April 2026. Nothing in these articles constitutes individual financial, tax or legal advice. Contact: peter.rose@aetas-wealth.com</p>
   </div>
 </section>
 
