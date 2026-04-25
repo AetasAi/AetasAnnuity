@@ -40,6 +40,41 @@ nav{background:white;border-bottom:1px solid var(--border);padding:0 40px;displa
 .rw-border{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
 @media(max-width:768px){.rw-grid,.rw-border{grid-template-columns:1fr!important}.rwfooter{padding:28px 16px 24px}}
 </style>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7VFMY2YCH3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7VFMY2YCH3');
+  // Track article read
+  gtag('event', 'article_view', {article_name: 'Executor Liability'});
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    // Track Book a Meeting clicks
+    document.querySelectorAll('a[href*="booking/65kC9dm2"]').forEach(function(el){
+      el.addEventListener('click', function(){
+        gtag('event', 'book_meeting_click', {location: 'article_executor_liability'});
+      });
+    });
+    // Track back to dashboard clicks
+    document.querySelectorAll('a[href="index.html"]').forEach(function(el){
+      el.addEventListener('click', function(){
+        gtag('event', 'article_back_to_dashboard', {article_name: 'Executor Liability'});
+      });
+    });
+    // Track scroll depth
+    var maxScroll = 0;
+    window.addEventListener('scroll', function(){
+      var pct = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+      if(pct > maxScroll + 25){
+        maxScroll = Math.floor(pct/25)*25;
+        gtag('event', 'article_scroll_depth', {article_name: 'Executor Liability', depth_pct: maxScroll});
+      }
+    });
+  });
+</script>
 </head>
 <body>
 
