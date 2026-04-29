@@ -152,8 +152,9 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
 .article-body h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:var(--navy);margin:28px 0 12px}
 .article-body ul{margin:0 0 18px 20px;display:flex;flex-direction:column;gap:8px}
 .article-body ul li{font-size:14.5px;color:var(--text-mid);line-height:1.65}
-.article-body strong{color:var(--navy);font-weight:600}padding:11px 20px;border-bottom:1px solid var(--border-light);font-size:13px;color:var(--text-mid)}
-.calc-row span:not(:first-child){text-align:right}
+.article-body strong{color:var(--navy);font-weight:600}
+.calc-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:11px 20px;border-bottom:1px solid var(--border-light);font-size:13px;color:var(--text-mid);min-width:0}
+.calc-row span:not(:first-child){text-align:right;padding-left:8px}
 .calc-row:hover{background:var(--cream)}
 
 /* ── MOBILE ── */
