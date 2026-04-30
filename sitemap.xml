@@ -4,11 +4,16 @@
 
   <url>
     <loc>https://fpa.aetaspartners.com/</loc>
-    <lastmod>2026-04-25</lastmod>
+    <lastmod>2026-04-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en-gb"
-                href="https://fpa.aetaspartners.com/"/>
+  </url>
+
+  <url>
+    <loc>https://fpa.aetaspartners.com/about.html</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
@@ -16,8 +21,6 @@
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en-gb"
-                href="https://fpa.aetaspartners.com/insight-double-whammy.html"/>
   </url>
 
   <url>
@@ -25,8 +28,6 @@
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en-gb"
-                href="https://fpa.aetaspartners.com/insight-bpr-legal-basis.html"/>
   </url>
 
   <url>
@@ -34,8 +35,6 @@
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en-gb"
-                href="https://fpa.aetaspartners.com/insight-executor-liability.html"/>
   </url>
 
 </urlset>
