@@ -482,10 +482,11 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
   </a>
   <nav class="nav">
     <button class="ntab active" onclick="showTab('overview',this)"><span class="tdot"></span>Overview</button>
-    <button class="ntab" onclick="showTabGroup(['problem','solution','how','costs'],this)"><span class="tdot"></span>The Issue &amp; Fix</button>
+    <button class="ntab" onclick="showTab('problem',this)"><span class="tdot"></span>The Problem</button>
+    <button class="ntab" onclick="showTab('solution',this)"><span class="tdot"></span>The Solution</button>
     <button class="ntab" onclick="showTab('cases',this)"><span class="tdot"></span>Case Studies</button>
     <button class="ntab" onclick="showTab('calc',this)"><span class="tdot"></span>Calculator</button>
-    <button class="ntab" onclick="showTabGroup(['faqs','insights'],this)"><span class="tdot"></span>FAQs</button>
+    <button class="ntab" onclick="showTab('insights',this)"><span class="tdot"></span>Insights</button>
     <button class="ntab" onclick="showTab('faqs',this)"><span class="tdot"></span>FAQs</button>
   </nav>
   <span class="htagline">Pension Legacy Planning &middot; April 2026</span>
@@ -503,17 +504,31 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
       </div>
       <h1 style="font-family:'Playfair Display',serif;font-size:46px;font-weight:400;color:white;line-height:1.1;margin-bottom:18px">Pension funds are about to cost your clients <em style="color:#B8820A;font-style:italic">two taxes</em> to pass on.</h1>
       <p style="font-size:16px;color:rgba(255,255,255,0.65);line-height:1.85;margin-bottom:24px;max-width:580px">From April 2027, unused DC pension funds enter the IHT estate. For clients over 75, 40% IHT hits first &mdash; then beneficiaries pay income tax on what remains. The combined charge reaches 67%. Some scenarios reach 80%.</p>
-      <div id="qw-countdown" style="display:flex;align-items:center;gap:14px;margin-bottom:28px;padding:12px 16px;background:rgba(184,130,10,0.12);border:1px solid rgba(184,130,10,0.3);border-radius:8px;max-width:580px">
-  <div style="font-size:22px;font-weight:700;color:#B8820A;font-family:'Playfair Display',serif;white-space:nowrap" id="qw-months">—</div>
-  <div style="font-size:12.5px;color:rgba(255,255,255,0.65);line-height:1.5">months until Finance Act 2026 takes effect &middot; <strong style="color:rgba(255,255,255,0.85)">The BPR qualifying period is 2 years.</strong> Time to act is now.</div>
+      <div id="qw-countdown" style="display:flex;align-items:center;gap:0;margin-bottom:28px;max-width:580px;border-radius:8px;overflow:hidden;border:1px solid rgba(184,130,10,0.35)">
+  <div style="background:rgba(184,130,10,0.18);padding:12px 18px;flex-shrink:0;border-right:1px solid rgba(184,130,10,0.3)">
+    <div style="display:flex;align-items:baseline;gap:5px">
+      <span id="qw-days" style="font-size:28px;font-weight:700;color:#B8820A;font-family:'Playfair Display',serif;line-height:1">—</span>
+      <span style="font-size:11px;font-weight:600;color:rgba(184,130,10,0.8);text-transform:uppercase;letter-spacing:0.08em">days</span>
+    </div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px;white-space:nowrap">to April 2027</div>
+  </div>
+  <div style="padding:10px 16px;background:rgba(184,130,10,0.07)">
+    <div style="font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.9);margin-bottom:2px">Finance Act 2026 takes effect 6 April 2027</div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.5);line-height:1.5">BPR qualifying period is <strong style="color:rgba(255,255,255,0.75)">2 years</strong> &middot; Act now to start the clock</div>
+  </div>
 </div>
 <script>
 (function(){
-  var target = new Date('2027-04-06T00:00:00Z');
-  var now = new Date();
-  var months = (target.getFullYear() - now.getFullYear())*12 + (target.getMonth() - now.getMonth());
-  if(target.getDate() > now.getDate()) months = Math.max(0, months);
-  document.getElementById('qw-months').textContent = months + (months === 1 ? ' month' : ' months');
+  function updateCountdown(){
+    var target = new Date('2027-04-06T00:00:00');
+    var now = new Date();
+    var diff = target - now;
+    if(diff <= 0){ document.getElementById('qw-days').textContent = '0'; return; }
+    var days = Math.floor(diff / (1000*60*60*24));
+    document.getElementById('qw-days').textContent = days.toLocaleString('en-GB');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
 })();
 </script>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
