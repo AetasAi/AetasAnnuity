@@ -1202,6 +1202,15 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
         <div id="calc-email-form" style="display:none;border-top:1px solid var(--border)"></div>
 
       </div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:2px">Email me these results</div>
+              <div style="font-size:12.5px;color:var(--text-mid)">Receive this analysis directly to your inbox — useful for your client file and for sharing with colleagues</div>
+            </div>
+          </div>
+          <span id="calc-email-chevron" style="color:var(--text-light);font-size:18px;flex-shrink:0;transition:transform .25s;display:inline-block">&#8744;</span>
+        </div>
+        <div id="calc-email-form" style="display:none;border-top:1px solid var(--border)"></div>
+      </div>
 
 
       <!-- Email capture: get results by email -->
@@ -1519,19 +1528,6 @@ function calc(){
 }
 
 
-    }
-
-    form.style.display='block';
-    chevron.style.transform='rotate(180deg)';
-    setTimeout(function(){
-      document.getElementById('calc-email-section').scrollIntoView({behavior:'smooth',block:'start'});
-    },150);
-
-  } else {
-    form.style.display='none';
-    chevron.style.transform='';
-  }
-}
 
 
 function toggleCalcEmail(){
