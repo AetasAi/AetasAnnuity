@@ -1198,14 +1198,15 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
       </div>
 
       <!-- CTA -->
+        <!-- Expandable form container — GHL iframe injected on first open -->
+        <div id="calc-email-form" style="display:none;border-top:1px solid var(--border)"></div>
 
-      <!-- ── Email capture: get results by email ── -->
+      </div>
+
+
+      <!-- Email capture: get results by email -->
       <div id="calc-email-section" style="margin-bottom:16px;background:var(--white);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden">
-
-        <!-- Teaser row (always visible) -->
-        <div onclick="toggleCalcEmail()"
-          style="padding:18px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background .15s"
-          onmouseover="this.style.background='var(--cream)'" onmouseout="this.style.background='white'">
+        <div onclick="toggleCalcEmail()" style="padding:18px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background .15s" onmouseover="this.style.background='var(--cream)'" onmouseout="this.style.background='white'">
           <div style="display:flex;align-items:center;gap:14px">
             <div style="width:40px;height:40px;border-radius:50%;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px">&#9993;</div>
             <div>
@@ -1215,10 +1216,7 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
           </div>
           <span id="calc-email-chevron" style="color:var(--text-light);font-size:18px;flex-shrink:0;transition:transform .25s;display:inline-block">&#8744;</span>
         </div>
-
-        <!-- Expandable form container — GHL iframe injected on first open -->
         <div id="calc-email-form" style="display:none;border-top:1px solid var(--border)"></div>
-
       </div>
 
       <div style="background:var(--gold);border-radius:var(--rl);padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px">
@@ -1521,52 +1519,6 @@ function calc(){
 }
 
 
-function toggleCalcEmail(){
-  var form = document.getElementById('calc-email-form');
-  var chevron = document.getElementById('calc-email-chevron');
-  var isOpen = form.style.display !== 'none';
-
-  if(!isOpen){
-    // Inject GHL iframe on first open only
-    if(!document.getElementById('ghl-calc-iframe-loaded')){
-      // Read current calculator values
-      var fund  = document.getElementById('fundInput').value || '500000';
-      var nw    = document.getElementById('res-net-without').textContent.replace(/[£,]/g,'');
-      var nwith = document.getElementById('res-net-with').textContent.replace(/[£,]/g,'');
-      var sav   = document.getElementById('res-saving').textContent.replace('Better off by £','').replace(/,/g,'');
-      var age   = document.getElementById('ageOver').checked ? 'Over 75' : 'Under 75';
-      var sp    = document.getElementById('spouseYes').checked ? 'Yes - spousal exemption' : 'No - children as beneficiaries';
-      var tx    = (parseFloat((document.querySelector('input[name="tax"]:checked')||{}).value||0.45)*100)+'%';
-
-      var p = '?fund_value='        + encodeURIComponent('£'+Number(fund).toLocaleString('en-GB'))
-            + '&without_fpa='       + encodeURIComponent('£'+Number(nw).toLocaleString('en-GB'))
-            + '&with_fpa='          + encodeURIComponent('£'+Number(nwith).toLocaleString('en-GB'))
-            + '&saving='            + encodeURIComponent('£'+Number(sav).toLocaleString('en-GB'))
-            + '&client_age='        + encodeURIComponent(age)
-            + '&spousal_exemption=' + encodeURIComponent(sp)
-            + '&tax_rate='          + encodeURIComponent(tx);
-
-      form.innerHTML =
-        '<iframe src="https://link.aetas-wealth.com/widget/form/6MwCwVMYm7VAg3Uzed8e'+p+'"'
-        +' style="width:100%;height:1103px;border:none;display:block"'
-        +' id="ghl-calc-iframe-loaded"'
-        +' data-layout='{"id":"INLINE"}''
-        +' data-trigger-type="alwaysShow"'
-        +' data-activation-type="alwaysActivated"'
-        +' data-deactivation-type="neverDeactivate"'
-        +' data-form-name="Flexible Pension Annuity Request For Information"'
-        +' data-height="1103"'
-        +' data-layout-iframe-id="inline-6MwCwVMYm7VAg3Uzed8e"'
-        +' data-form-id="6MwCwVMYm7VAg3Uzed8e"'
-        +' title="Email me these results — Aetas Wealth"></iframe>';
-
-      // Load GHL embed script once
-      if(!document.getElementById('ghl-form-embed-js')){
-        var s=document.createElement('script');
-        s.id='ghl-form-embed-js';
-        s.src='https://link.aetas-wealth.com/js/form_embed.js';
-        document.body.appendChild(s);
-      }
     }
 
     form.style.display='block';
@@ -1575,6 +1527,60 @@ function toggleCalcEmail(){
       document.getElementById('calc-email-section').scrollIntoView({behavior:'smooth',block:'start'});
     },150);
 
+  } else {
+    form.style.display='none';
+    chevron.style.transform='';
+  }
+}
+
+
+function toggleCalcEmail(){
+  var form = document.getElementById('calc-email-form');
+  var chevron = document.getElementById('calc-email-chevron');
+  var isOpen = form.style.display !== 'none';
+  if(!isOpen){
+    if(!document.getElementById('ghl-calc-iframe-loaded')){
+      var fund  = document.getElementById('fundInput').value || '500000';
+      var nw    = document.getElementById('res-net-without').textContent.replace(/[£,]/g,'');
+      var nwith = document.getElementById('res-net-with').textContent.replace(/[£,]/g,'');
+      var sav   = document.getElementById('res-saving').textContent.replace('Better off by £','').replace(/,/g,'');
+      var age   = document.getElementById('ageOver').checked ? 'Over 75' : 'Under 75';
+      var sp    = document.getElementById('spouseYes').checked ? 'Yes - spousal exemption' : 'No - children as beneficiaries';
+      var txEl  = document.querySelector('input[name="tax"]:checked');
+      var tx    = (parseFloat(txEl ? txEl.value : 0.45)*100)+'%';
+      var p = '?fund_value='        + encodeURIComponent('£'+Number(fund).toLocaleString('en-GB'))
+            + '&without_fpa='       + encodeURIComponent('£'+Number(nw).toLocaleString('en-GB'))
+            + '&with_fpa='          + encodeURIComponent('£'+Number(nwith).toLocaleString('en-GB'))
+            + '&saving='            + encodeURIComponent('£'+Number(sav).toLocaleString('en-GB'))
+            + '&client_age='        + encodeURIComponent(age)
+            + '&spousal_exemption=' + encodeURIComponent(sp)
+            + '&tax_rate='          + encodeURIComponent(tx);
+      var iframeSrc = 'https://link.aetas-wealth.com/widget/form/6MwCwVMYm7VAg3Uzed8e' + p;
+      var el = document.createElement('iframe');
+      el.id = 'ghl-calc-iframe-loaded';
+      el.src = iframeSrc;
+      el.style.cssText = 'width:100%;height:1103px;border:none;display:block';
+      el.title = 'Email me these results - Aetas Wealth';
+      el.setAttribute('data-form-id','6MwCwVMYm7VAg3Uzed8e');
+      el.setAttribute('data-form-name','Flexible Pension Annuity Request For Information');
+      el.setAttribute('data-height','1103');
+      el.setAttribute('data-trigger-type','alwaysShow');
+      el.setAttribute('data-activation-type','alwaysActivated');
+      el.setAttribute('data-deactivation-type','neverDeactivate');
+      el.setAttribute('data-layout-iframe-id','inline-6MwCwVMYm7VAg3Uzed8e');
+      form.appendChild(el);
+      if(!document.getElementById('ghl-form-embed-js')){
+        var s=document.createElement('script');
+        s.id='ghl-form-embed-js';
+        s.src='https://link.aetas-wealth.com/js/form_embed.js';
+        document.body.appendChild(s);
+      }
+    }
+    form.style.display='block';
+    chevron.style.transform='rotate(180deg)';
+    setTimeout(function(){
+      document.getElementById('calc-email-section').scrollIntoView({behavior:'smooth',block:'start'});
+    },150);
   } else {
     form.style.display='none';
     chevron.style.transform='';
