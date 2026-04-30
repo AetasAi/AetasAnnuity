@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Favicon -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aetas Wealth — Pension Legacy Planning · Adviser Dashboard</title>
 <meta name="description" content="Finance Act 2026 brings DC pension funds into the IHT estate from April 2027. Combined with income tax, the charge reaches 67%. Aetas Wealth explains the Flexible Pension Annuity solution for financial advisers.">
@@ -16,9 +20,15 @@
 <meta property="og:url" content="https://aetasai.github.io/FlexiblePensionAnnuity/">
 <meta property="og:site_name" content="Aetas Wealth">
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Pension IHT Planning — Finance Act 2026 | Aetas Wealth">
 <meta name="twitter:description" content="Finance Act 2026 creates a 67% combined tax charge on DC pension death benefits. The Flexible Pension Annuity eliminates both taxes. For financial advisers.">
+<meta name="twitter:image" content="https://aetasai.github.io/FlexiblePensionAnnuity/og-image.svg">
+<!-- Open Graph image -->
+<meta property="og:image" content="https://aetasai.github.io/FlexiblePensionAnnuity/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pension funds face 67% combined IHT and income tax from April 2027. The Flexible Pension Annuity eliminates both. Aetas Wealth — for professional advisers.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0D1B3E;--navy-mid:#1C3461;--gold:#B8820A;--cream:#FAFAF7;--bg:#F2F1EE;--white:#FFFFFF;--border:#DDD9CF;--border-light:#EAE8E2;--text:#1A1A2A;--text-mid:#4A4956;--text-light:#888097;--green:#0A7050;--green-bg:#EBF7F1;--red:#B52020;--red-bg:#FDF0F0;--blue:#1C3461;--blue-bg:#EBF0FA;--amber:#92650A;--amber-bg:#FFF8E6;--r:8px;--rl:12px}
@@ -417,6 +427,48 @@ td.g{color:var(--green);font-weight:500}td.r{color:var(--red)}
     }
   ]
 }
+</script>
+<!-- Schema: Peter Rose — named expert author -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://aetasai.github.io/FlexiblePensionAnnuity/#peter-rose",
+  "name": "Peter Rose",
+  "honorificSuffix": "APFS",
+  "jobTitle": "Chartered Financial Planner",
+  "description": "Peter Rose APFS is a Chartered Financial Planner specialising in pension inheritance tax planning under Finance Act 2026. He advises UK financial advisers on the Flexible Pension Annuity as a structured solution to eliminate the pension IHT double whammy affecting DC pension funds from April 2027.",
+  "email": "peter.rose@aetas-wealth.com",
+  "worksFor": {
+    "@id": "https://aetasai.github.io/FlexiblePensionAnnuity/#organization"
+  },
+  "hasCredential": {
+    "@type": "EducationalOccupationalCredential",
+    "name": "APFS — Advanced Diploma in Financial Planning",
+    "credentialCategory": "Chartered Financial Planner",
+    "recognizedBy": {
+      "@type": "Organization",
+      "name": "Chartered Insurance Institute"
+    }
+  },
+  "knowsAbout": [
+    "Finance Act 2026 pension IHT",
+    "Flexible Pension Annuity",
+    "Business Property Relief s105(1)(bb) IHTA 1984",
+    "DC pension estate planning",
+    "Executor liability under pension IHT rules",
+    "Gibraltar Protected Cell Company"
+  ],
+  "url": "https://aetasai.github.io/FlexiblePensionAnnuity/"
+}
+</script>
+<!-- Microsoft Clarity — heatmaps and session recordings -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wjn1hr8102");
 </script>
 </head>
 <body>
@@ -1480,5 +1532,22 @@ function toggleFaq(el){el.parentElement.classList.toggle('open')}
     </div>
   </div>
 </div>
+<!-- Deep-link from insight pages: reads sessionStorage tab target -->
+<script>
+(function(){
+  var tab = sessionStorage.getItem('openTab');
+  if(tab){
+    sessionStorage.removeItem('openTab');
+    if(typeof showTab === 'function'){
+      var btn = document.querySelector('.ntab[data-id="'+tab+'"]') ||
+                Array.from(document.querySelectorAll('.ntab')).find(function(el){
+                  return el.getAttribute('onclick') && el.getAttribute('onclick').indexOf("'"+tab+"'") > -1;
+                });
+      showTab(tab, btn || document.querySelector('.ntab'));
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  }
+})();
+</script>
 </body>
 </html>
